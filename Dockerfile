@@ -1,17 +1,17 @@
-FROM ubuntu:xenial
+FROM ubuntu:22.04
 
-LABEL maintainer="lucas@vieira.io"
+LABEL maintainer="nunung.pamungkas@vneu.co.id"
 LABEL version="1.0"
 
 RUN apt-get -y update \
     && apt-get -y upgrade
 
-RUN apt-get -y install postgresql-9.5 bucardo jq
+RUN apt-get -y install postgresql-14 bucardo jq
 
-COPY etc/pg_hba.conf /etc/postgresql/9.5/main/
+COPY etc/pg_hba.conf /etc/postgresql/14/main/
 COPY etc/bucardorc /etc/bucardorc
 
-RUN chown postgres /etc/postgresql/9.5/main/pg_hba.conf
+RUN chown postgres /etc/postgresql/14/main/pg_hba.conf
 RUN chown postgres /etc/bucardorc
 RUN chown postgres /var/log/bucardo
 RUN mkdir /var/run/bucardo && chown postgres /var/run/bucardo
