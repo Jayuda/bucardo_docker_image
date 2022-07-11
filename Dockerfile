@@ -3,9 +3,12 @@ FROM ubuntu:22.04
 LABEL maintainer="nunung.pamungkas@vneu.co.id"
 LABEL version="1.0"
 
-RUN apt-get -y update \
-    && apt-get -y upgrade
+RUN apt-get -y update
 
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Jakarta
+
+RUN apt-get install -y tzdata
 RUN apt-get -y install postgresql-14 bucardo jq
 
 COPY etc/pg_hba.conf /etc/postgresql/14/main/
